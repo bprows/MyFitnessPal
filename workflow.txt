@@ -1,0 +1,6 @@
+Setting up workflow.
+
+Create script to run create mfp table.sql and then rip_data.py. This gets all the data into mySQL.
+
+Need to create function to get a days data and load into mySQL.
+Keep track of dates that need to be loaded unless there is a way to do it automatically. Could try to set up a job to run everyday. 
