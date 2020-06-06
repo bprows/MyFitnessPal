@@ -4,7 +4,7 @@ import pandas as pd
 import mysql.connector
 from sqlalchemy import create_engine
 import pymysql.cursors
-
+from food_day import food_day
 
 username = 'brodyprows97'
 print("Setting up client for %s. \n" % username)
@@ -31,10 +31,15 @@ this_date = str(yesterdays_date.year) + '-' + str(yesterdays_date.month) + '-' +
 for meal in range(len(day.meals)):
     meal_name = day.meals[meal].name
     for e in range(len(day.meals[meal].entries)):
+        food_name = None
+        if day.meals[meal].entries[e]._short_name:
+            food_name = day.meals[meal].entries[e]._short_name.strip()
+        else:
+            food_name = day.meals[meal].entries[e].name
         this_food = pd.DataFrame({"date": [this_date],
                                   "username": [username],
                                   "meal": [meal_name],
-                                  "food": day.meals[meal].entries[e]._short_name.strip(), # might need to chop this down to 45 chars
+                                  "food": food_name, # might need to chop this down to 45 chars
                                   "unit": day.meals[meal].entries[e].unit,
                                   "quantity": day.meals[meal].entries[e].quantity,
                                   'calories': day.meals[meal].entries[e].totals['calories'],

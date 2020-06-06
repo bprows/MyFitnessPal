@@ -24,8 +24,7 @@ df = pd.DataFrame({"date": [],
 # Gets dates
 delta = timedelta(days=1)
 todays_date = date.today()
-streak = timedelta(days=252)
-curr_date = start_date = todays_date - streak
+curr_date = start_date = date(2019,9,15)
 
 
 print("Getting data from %s to %s \n" % (start_date,todays_date))
